@@ -1,0 +1,9 @@
+---
+# Homebrew taps
+homebrew_taps: []
+
+# Homebrew packages
+homebrew_packages: []
+
+# Homebrew casks
+homebrew_apps: []

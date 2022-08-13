@@ -1,0 +1,63 @@
+---
+computername: User\'s\ MBA
+hostname: user
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+  - homebrew/cask-drivers
+  - homebrew/cask-versions
+  - aws/tap
+
+homebrew_packages:
+  - awscli
+  - aws-sam-cli
+  - bash
+  - cfn-lint
+  - gh
+  - git
+  - go
+  - hugo
+  - jq
+  - make
+  - node
+  - nvm
+  - pre-commit
+  - python
+  - rain
+  - ssh-copy-id
+  - tree
+  - vim
+  - wget
+  - yarn
+  - zsh
+
+homebrew_apps:
+  - amazon-chime
+  - amazon-workspaces
+  - arq
+  - bose-updater
+  - discord
+  - docker
+  - dropbox
+  - firefox
+  - garmin-express
+  - google-chrome
+  - hyper
+  - jetbrains-toolbox
+  - lg-onscreen-control
+  - microsoft-remote-desktop
+  - parsec
+  - powershell
+  - steam
+  - tunnelblick
+  - visual-studio-code
+  - whatsapp
+  - zoom
+
+mas_apps:
+  - { name: Octotree, id: 1457450145 }
+  - { name: Quip, id: 1003160018 }
+  - { name: Amphetamine, id: 937984704 }
+  - { name: Slack for Desktop, id: 803453959 }
+
