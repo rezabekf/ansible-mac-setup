@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-
   pre_tasks:
     - name: Include configuration
       include_vars: "{{ item }}"
@@ -9,12 +8,30 @@
             - config.yml
             - default.config.yaml
           skip: true
-      tags: ['always']
-
+      tags: [ 'always' ]
   roles:
     - role: homebrew
-      tags: [homebrew]
+      tags: [ homebrew ]
     - role: mas
-      tags: [mas]
+      tags: [ mas ]
     - role: osx
-      tags: [osx]
+      tags: [ osx ]
+  tasks:
+    - name: Get the path to ZSH
+      become: false
+      local_action: command which zsh
+      register: zsh_path
+      changed_when: false
+    - name: Ensure zsh is in allowed shells
+      lineinfile:
+        path: /etc/shells
+        line: "{{ zsh_path.stdout }}"
+      become: true
+    - name: Set ZSH as the default shell
+      shell: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
+      become: true
+      changed_when: false
+    - name: Install Oh My ZSH
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      args:
+        creates: "/Users/{{ lookup('env', 'USER') }}/.oh-my-zsh"
