@@ -18,9 +18,4 @@ Ansible script for setting up a Mac for development.
 ## Acknowledgements
 
 This playbook is heavily inspired by
-[Jeff Geerling's mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook) and
-[Jérôme Gamez's ansible-macos-playbook](https://github.com/jeromegamez/ansible-macos-playbook).
-
-The macOS settings (a.k.a. `defaults write`s) are mostly taken from
-[Mathias Bynens' defaults scripts](https://mths.be/macos) or from one of the
-dotfiles repos from [http://dotfiles.github.io](http://dotfiles.github.io).
+[Jeff Geerling's mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook).

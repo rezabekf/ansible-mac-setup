@@ -1,4 +1,3 @@
----
 # Select the tasks to run. Set to true|false.
 configure_homebrew: true
 configure_mas: true
@@ -99,7 +98,7 @@ macos_ohmyzsh:
   default_shell: true # Set zsh as default shell?
   configure_oh_my_zsh: true # Configure oh-my-zsh after install?
   config:
-    theme: "robbyrussell"
+    theme: robbyrussell
     case_sensitive: false
     hyphen_insensitive: false
     disable_magic_functions: false
@@ -108,5 +107,5 @@ macos_ohmyzsh:
     enable_correction: false
     completion_waiting_dots: false
     disable_untracked_files_dirty: false
-    custom: "$ZSH/custom"
-    plugins: "git"
+    custom: $ZSH/custom
+    plugins: git

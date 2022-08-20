@@ -1,4 +1,3 @@
----
 - hosts: localhost
 
   vars_files:
@@ -6,21 +5,21 @@
 
   pre_tasks:
     - name: Include playbook configuration.
-      include_vars: "{{ item }}"
+      include_vars: '{{ item }}'
       with_fileglob:
-        - "{{ playbook_dir }}/config.yml"
-      tags: ['always']
+        - '{{ playbook_dir }}/config.yml'
+      tags: [always]
 
   roles:
     - role: homebrew
       when: configure_homebrew
-      tags: ['homebrew']
+      tags: [homebrew]
     - role: mas
       when: configure_mas
-      tags: ['mas']
+      tags: [mas]
     - role: osx
       when: configure_osx
-      tags: ['osx']
+      tags: [osx]
     - role: dotfiles
       when: configure_dotfiles
-      tags: ['dotfiles']
+      tags: [dotfiles]

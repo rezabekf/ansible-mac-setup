@@ -1,26 +1,25 @@
----
 - name: Install Homebrew Taps
   homebrew_tap:
-    name: "{{ item.name | default(item) }}"
+    name: '{{ item.name | default(item) }}'
     state: "{{ item.state | default('present') }}"
-  loop: "{{ homebrew_taps }}"
+  loop: '{{ homebrew_taps }}'
   when: homebrew_taps|default([])|count > 0
 
 - name: Install Homebrew Packages
   homebrew:
-    name: "{{ item.name | default(item) }}"
+    name: '{{ item.name | default(item) }}'
     state: "{{ item.state | default('present') }}"
-    install_options: "{{ item.install_options | default(omit) }}"
-  loop: "{{ homebrew_packages }}"
+    install_options: '{{ item.install_options | default(omit) }}'
+  loop: '{{ homebrew_packages }}'
   when: homebrew_packages|default([])|count > 0
 
 - name: Install homebrew Casks
   homebrew_cask:
-    name: "{{ item.name | default(item) }}"
+    name: '{{ item.name | default(item) }}'
     state: "{{ item.state | default('present') }}"
-    install_options: "{{ item.install_options | default(omit) }}"
+    install_options: '{{ item.install_options | default(omit) }}'
     accept_external_apps: true
-  loop: "{{ homebrew_apps }}"
+  loop: '{{ homebrew_apps }}'
   when: homebrew_apps|default([])|count > 0
 
 - name: Update homebrew and upgrade all packages.

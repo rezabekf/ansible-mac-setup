@@ -1,4 +1,3 @@
----
 - name: Get current ComputerName
   command: scutil --get ComputerName
   register: computername_result
