@@ -1,21 +1,30 @@
 ---
 - hosts: localhost
+
+  vars_files:
+    - default.config.yml
+
   pre_tasks:
-    - name: Include configuration
+    - name: Include playbook configuration.
       include_vars: "{{ item }}"
-      with_first_found:
-        - files:
-            - config.yml
-            - default.config.yaml
-          skip: true
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
       tags: [ 'always' ]
+
   roles:
     - role: homebrew
-      tags: [ homebrew ]
+      when: configure_homebrew
+      tags: [ 'homebrew' ]
     - role: mas
-      tags: [ mas ]
+      when: configure_mas
+      tags: [ 'mas' ]
     - role: osx
-      tags: [ osx ]
+      when: configure_osx
+      tags: [ 'osx' ]
+    - role: dotfiles
+      when: configure_dotfiles
+      tags: [ 'dotfiles' ]
+
   tasks:
     - name: Get the path to ZSH
       become: false

@@ -7,3 +7,5 @@ homebrew_packages: []
 
 # Homebrew casks
 homebrew_apps: []
+
+homebrew_upgrade_all_packages: false

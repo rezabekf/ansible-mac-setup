@@ -1,7 +1,15 @@
 ---
-computername: UsersMBA
-hostname: user
+# Select the playbooks to run. Set to true|false.
+configure_homebrew: true
+configure_mas: true
+configure_osx: true
+configure_dotfiles: true
 
+# Configure macOS system preferences.
+computername: UsersMBA # Didn't figure out how to escape special characters <User\'s\ MBA> works but always reports change.
+hostname: hostname
+
+# Register homebrew taps.
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
@@ -9,6 +17,7 @@ homebrew_taps:
   - homebrew/cask-versions
   - aws/tap
 
+# Install homebrew packages.
 homebrew_packages:
   - awscli
   - aws-sam-cli
@@ -16,6 +25,7 @@ homebrew_packages:
   - cfn-lint
   - gh
   - git
+  - git-secrets
   - go
   - hugo
   - jq
@@ -28,10 +38,13 @@ homebrew_packages:
   - ssh-copy-id
   - tree
   - vim
+  - virtualenv
+  - virtualenvwrapper
   - wget
   - yarn
   - zsh
 
+# Install homebrew casks.
 homebrew_apps:
   - amazon-chime
   - amazon-workspaces
@@ -44,20 +57,39 @@ homebrew_apps:
   - garmin-express
   - google-chrome
   - hyper
+  - iterm2
   - jetbrains-toolbox
   - lg-onscreen-control
   - microsoft-remote-desktop
   - parsec
   - powershell
+  - slack
   - steam
   - tunnelblick
   - visual-studio-code
   - whatsapp
   - zoom
 
-mas_apps:
-  - { name: Octotree, id: 1457450145 }
-  - { name: Quip, id: 1003160018 }
-  - { name: Amphetamine, id: 937984704 }
-  - { name: Slack for Desktop, id: 803453959 }
+# Upgrade homebrew and all packages.
+homebrew_upgrade_all_packages: false
+
+# Install App Store apps.
+mas_installed_apps:
+  - { id: 1457450145, name: Octotree }
+  - { id: 866773894, name: Quiver }
+  - { id: 443987910, name: 1Password v6.8.9 }
+  - { id: 937984704, name: Amphetamine }
+  - { id: 409201541, name: Pages }
+  - { id: 409183694, name: Keynote }
+  - { id: 1082624744, name: Gifox v1.6.1 }
+  - { id: 409203825, name: Numbers }
+
+# Upgrade App Store apps.
+mas_upgrade_all_apps: true
+
+# Uninstall App Store apps.
+# This is currently bugged, see https://github.com/mas-cli/mas/issues/216. To uninstall app requires
+# sudo, however `sudo mas list` has no application installed.
+mas_uninstalled_apps:
+#  - { id: 682658836, name: GarageBand }
 

@@ -1,17 +1,30 @@
 ---
-- name: Ensure mas-cli is installed
+- name: Ensure MAS is installed.
   homebrew:
     name: mas
     state: present
-  when: mas_apps|count > 0
+  when: mas_installed_apps|count > 0
 
-- name: Get installed MAS apps
+- name: List installed MAS apps.
   command: mas list
   register: mas_list
-  check_mode: no
+  check_mode: false
   changed_when: false
 
-- name: Install MAS apps
+- name: Ensure configured MAS apps are installed.
   command: mas install "{{ item.id|default(item) }}"
-  loop: "{{ mas_apps }}"
-  when: (item.id|default(item)|string) not in mas_list.stdout
+  with_items: "{{ mas_installed_apps }}"
+  when: (item.id | default(item) | string) not in mas_list.stdout
+
+- name: Upgrade all apps (if configured).
+  command: mas upgrade
+  register: mas_result
+  when: mas_upgrade_all_apps
+  changed_when:
+    - '"Warning:" in mas_result.stdout'
+
+- name: Ensure unwanted MAS apps are uninstalled.
+  command: mas uninstall "{{ item.id|default(item) }}"
+  with_items: "{{ mas_uninstalled_apps }}"
+  become: true
+  when: (item.id | default(item) | string) in mas_list.stdout
