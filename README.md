@@ -11,7 +11,7 @@ Ansible script for setting up a Mac for development.
 
 1. Install [Homebrew](https://brew.sh).
 2. Install Ansible (`brew install ansible`)
-3. Copy `default.config.yml` to `config.yml` and edit the configuration to your likings 
+3. Copy `default.config.yml` to `config.yml` and edit the configuration to your likings
    (`cp default.config.yml config.yml`).
 4. Run `ansible-playbook main.yml`. Enter your account password when prompted.
 

@@ -9,38 +9,18 @@
       include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
-      tags: [ 'always' ]
+      tags: ['always']
 
   roles:
     - role: homebrew
       when: configure_homebrew
-      tags: [ 'homebrew' ]
+      tags: ['homebrew']
     - role: mas
       when: configure_mas
-      tags: [ 'mas' ]
+      tags: ['mas']
     - role: osx
       when: configure_osx
-      tags: [ 'osx' ]
+      tags: ['osx']
     - role: dotfiles
       when: configure_dotfiles
-      tags: [ 'dotfiles' ]
-
-  tasks:
-    - name: Get the path to ZSH
-      become: false
-      local_action: command which zsh
-      register: zsh_path
-      changed_when: false
-    - name: Ensure zsh is in allowed shells
-      lineinfile:
-        path: /etc/shells
-        line: "{{ zsh_path.stdout }}"
-      become: true
-    - name: Set ZSH as the default shell
-      shell: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
-      become: true
-      changed_when: false
-    - name: Install Oh My ZSH
-      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-      args:
-        creates: "/Users/{{ lookup('env', 'USER') }}/.oh-my-zsh"
+      tags: ['dotfiles']

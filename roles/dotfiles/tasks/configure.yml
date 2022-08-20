@@ -1,0 +1,37 @@
+---
+- name: Ensure ZSH is installed.
+  homebrew:
+    name: zsh
+    state: present
+
+- name: Get the path to ZSH.
+  become: false
+  delegate_to: localhost
+  command: which zsh
+  register: zsh_path
+  changed_when: false
+
+- name: Ensure ZSH is in allowed shells.
+  lineinfile:
+    path: /etc/shells
+    line: "{{ zsh_path.stdout }}"
+  become: true
+
+- name: Set ZSH as the default shell.
+  become: true
+  shell: chsh -s $(which zsh) {{ ansible_user_id }}
+  when: macos_ohmyzsh.default_shell
+  register: chsh_result
+  changed_when: "'chsh: no changes made' not in chsh_result.stderr"
+
+- name: Install OhMyZSH.
+  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: "/Users/{{ lookup('env', 'USER') }}/.oh-my-zsh"
+
+- name: Configure OhMyZSH.
+  template:
+    src: ".zshrc.j2"
+    dest: "{{ ansible_env.HOME + '/.zshrc' }}"
+    backup: true
+  when: macos_ohmyzsh.configure_oh_my_zsh

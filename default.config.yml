@@ -1,5 +1,5 @@
 ---
-# Select the playbooks to run. Set to true|false.
+# Select the tasks to run. Set to true|false.
 configure_homebrew: true
 configure_mas: true
 configure_osx: true
@@ -35,6 +35,7 @@ homebrew_packages:
   - pre-commit
   - python
   - rain
+  - ruby
   - ssh-copy-id
   - tree
   - vim
@@ -93,3 +94,19 @@ mas_upgrade_all_apps: true
 mas_uninstalled_apps:
 #  - { id: 682658836, name: GarageBand }
 
+# Install and configure zsh and oh-my-zsh.
+macos_ohmyzsh:
+  default_shell: true # Set zsh as default shell?
+  configure_oh_my_zsh: true # Configure oh-my-zsh after install?
+  config:
+    theme: "robbyrussell"
+    case_sensitive: false
+    hyphen_insensitive: false
+    disable_magic_functions: false
+    disable_ls_colors: false
+    disable_auto_title: false
+    enable_correction: false
+    completion_waiting_dots: false
+    disable_untracked_files_dirty: false
+    custom: "$ZSH/custom"
+    plugins: "git"
