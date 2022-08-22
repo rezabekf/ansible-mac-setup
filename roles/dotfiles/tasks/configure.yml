@@ -24,7 +24,7 @@
   changed_when: "'chsh: no changes made' not in chsh_result.stderr"
 
 - name: Install OhMyZSH.
-  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   args:
     creates: /Users/{{ lookup('env', 'USER') }}/.oh-my-zsh
 
