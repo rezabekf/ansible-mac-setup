@@ -26,15 +26,11 @@ homebrew_packages:
   - git
   - git-secrets
   - go
-  - hugo
   - jq
   - make
-  - node
   - nvm
   - pre-commit
   - python
-  - rain
-  - ruby
   - ssh-copy-id
   - tree
   - vim
@@ -46,42 +42,25 @@ homebrew_packages:
 
 # Install homebrew casks.
 homebrew_apps:
-  - amazon-chime
-  - amazon-workspaces
-  - arq
-  - bose-updater
   - discord
   - docker
   - dropbox
   - firefox
-  - garmin-express
   - google-chrome
-  - hyper
   - iterm2
   - jetbrains-toolbox
-  - lg-onscreen-control
   - microsoft-remote-desktop
-  - parsec
   - powershell
   - slack
-  - steam
-  - tunnelblick
   - visual-studio-code
-  - whatsapp
-  - zoom
 
 # Upgrade homebrew and all packages.
 homebrew_upgrade_all_packages: false
 
 # Install App Store apps.
 mas_installed_apps:
-  - { id: 1457450145, name: Octotree }
-  - { id: 866773894, name: Quiver }
-  - { id: 443987910, name: 1Password v6.8.9 }
-  - { id: 937984704, name: Amphetamine }
   - { id: 409201541, name: Pages }
   - { id: 409183694, name: Keynote }
-  - { id: 1082624744, name: Gifox v1.6.1 }
   - { id: 409203825, name: Numbers }
 
 # Upgrade App Store apps.
