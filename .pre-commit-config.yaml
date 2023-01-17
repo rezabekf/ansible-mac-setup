@@ -3,7 +3,7 @@
 repos:
   # General
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: check-case-conflict
       - id: detect-private-key
@@ -28,7 +28,7 @@ repos:
 
   # Ansible lint
   - repo: https://github.com/ansible-community/ansible-lint.git
-    rev: v6.4.0
+    rev: v6.10.2
     hooks:
       - id: ansible-lint
         exclude: ^.pre-commit-config.yaml/

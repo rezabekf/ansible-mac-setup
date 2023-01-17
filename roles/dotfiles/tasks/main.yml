@@ -1,1 +1,2 @@
-- include_tasks: configure.yml
+- name: Include DotFiles config tasks
+  include_tasks: configure.yml

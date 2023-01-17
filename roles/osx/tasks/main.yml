@@ -1,2 +1,3 @@
-- import_tasks: hostname.yml
+- name: Include osx config tasks
+  import_tasks: hostname.yml
   tags: [osx-hostname]
