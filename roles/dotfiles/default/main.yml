@@ -13,3 +13,4 @@ macos_ohmyzsh:
     disable_untracked_files_dirty: false
     custom: $ZSH/custom
     plugins: git
+    profile_path: ~/.zprofile
