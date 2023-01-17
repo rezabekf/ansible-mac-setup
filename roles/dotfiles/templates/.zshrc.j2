@@ -74,9 +74,16 @@ ZSH_CUSTOM={{ macos_ohmyzsh.config.custom|default("$ZSH/custom") }}
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+# Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Load personal ZSH config which should be stored in ~/.zprofile
+# I have ~/.zprofile symlinked to a file in my personal Dropbox/iCloud for easy sharing.
+if [ -f ~/.zprofile ]; then
+  . ~/.zprofile;
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
