@@ -1,16 +1,16 @@
 macos_ohmyzsh:
-  default_shell: true
-  configure_oh_my_zsh: true
+  default_shell: null
+  configure_oh_my_zsh: null
   config:
-    theme: robbyrussell
-    case_sensitive: false
-    hyphen_insensitive: false
-    disable_magic_functions: false
-    disable_ls_colors: false
-    disable_auto_title: false
-    enable_correction: false
-    completion_waiting_dots: true
-    disable_untracked_files_dirty: false
-    custom: $ZSH/custom
-    plugins: git
-    profile_path: ~/.zprofile
+    theme: null
+    case_sensitive: null
+    hyphen_insensitive: null
+    disable_magic_functions: null
+    disable_ls_colors: null
+    disable_auto_title: null
+    enable_correction: null
+    completion_waiting_dots: null
+    disable_untracked_files_dirty: null
+    custom: null
+    plugins: null
+    profile_path: null
