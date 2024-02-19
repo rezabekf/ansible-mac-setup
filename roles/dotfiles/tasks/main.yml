@@ -1,2 +1,7 @@
-- name: Include DotFiles config tasks
-  include_tasks: configure.yml
+- name: Include OhMyZSH config tasks
+  include_tasks: oh_my_zsh.yml
+  tags: [oh-my-zsh]
+
+- name: Include SSH config tasks
+  include_tasks: ssh_conf.yml
+  tags: [ssh-config]

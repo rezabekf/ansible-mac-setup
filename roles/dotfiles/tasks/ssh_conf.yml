@@ -1,0 +1,32 @@
+- name: Check if ~/.ssh directory exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.ssh"
+  register: ssh_dir_status
+
+- name: Create ~/.ssh directory if it doesn't exist
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+  when: not ssh_dir_status.stat.exists
+
+- name: Ensure ~/.ssh/config file exists
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh/config"
+    state: touch
+    mode: '0600'
+  when: ssh_dir_status.stat.exists and not ansible_check_mode
+
+- name: Generate SSH config entries
+  copy:
+    dest: "{{ ansible_env.HOME }}/.ssh/config"
+    content: |
+      # BEGIN ANSIBLE MANAGED BLOCK
+      {% for host in ssh_hosts %}
+      Host {{ host.name }}
+        {% for key, value in host.options.items() %}
+        {{ key }} {{ value }}
+        {% endfor %}
+      {% endfor %}
+      # END ANSIBLE MANAGED BLOCK
+    mode: '0600'
+  when: not ansible_check_mode
