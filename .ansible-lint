@@ -3,3 +3,6 @@ skip_list:
   - experimental
   - yaml[indentation]
   - fqcn-builtins
+exclude_paths:
+  - roles/homebrew/tasks/main.yml
+  - roles/mas/tasks/main.yaml

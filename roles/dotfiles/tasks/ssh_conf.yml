@@ -17,15 +17,21 @@
   when: ssh_dir_status.stat.exists and not ansible_check_mode
 
 - name: Generate SSH config entries
+  vars:
+    ansible_managed: |
+      BEGIN ANSIBLE MANAGED BLOCK
+      # Ansible managed: Any manual changes will be overwritten on the next run.
+      # Modified on {{ ansible_date_time.iso8601 }} by {{ ansible_user_id }} on {{ ansible_hostname }}.
   copy:
     dest: "{{ ansible_env.HOME }}/.ssh/config"
     content: |
-      # BEGIN ANSIBLE MANAGED BLOCK
+      # {{ ansible_managed }}
       {% for host in ssh_hosts %}
       Host {{ host.name }}
         {% for key, value in host.options.items() %}
         {{ key }} {{ value }}
         {% endfor %}
+
       {% endfor %}
       # END ANSIBLE MANAGED BLOCK
     mode: '0600'
