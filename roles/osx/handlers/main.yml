@@ -1,0 +1,8 @@
+---
+- name: Restart Dock
+  command: "killall Dock"
+  changed_when: true
+
+- name: Restart WindowManager
+  command: "killall WindowManager"
+  changed_when: true

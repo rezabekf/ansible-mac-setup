@@ -33,4 +33,5 @@
     src: .zshrc.j2
     dest: "{{ ansible_env.HOME + '/.zshrc' }}"
     backup: true
+
   when: macos_ohmyzsh.configure_oh_my_zsh

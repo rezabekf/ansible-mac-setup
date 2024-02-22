@@ -1,0 +1,41 @@
+---
+- name: Click wallpaper to reveal desktop
+  osx_defaults:
+    domain: com.apple.WindowManager
+    key: EnableStandardClickToShowDesktop
+    type: bool
+    value: "{{ click_wallpaper_to_reveal_desktop }}"
+  notify: Restart WindowManager
+
+- name: Set hot corner for top left to Mission Control
+  osx_defaults:
+    domain: com.apple.dock
+    key: "wvous-tl-corner"
+    type: int
+    value: "{{ hot_corner_top_left }}"
+
+- name: Set hot corner for top right to Application Windows
+  osx_defaults:
+    domain: com.apple.dock
+    key: "wvous-tr-corner"
+    type: int
+    value: "{{ hot_corner_top_right }}"
+
+- name: Set hot corner for bottom left to Desktop
+  osx_defaults:
+    domain: com.apple.dock
+    key: "wvous-bl-corner"
+    type: int
+    value: "{{ hot_corner_bottom_left }}"
+
+- name: Set hot corner for bottom right to Start Screen Saver
+  osx_defaults:
+    domain: com.apple.dock
+    key: "wvous-br-corner"
+    type: int
+    value: "{{ hot_corner_bottom_right }}"
+
+- name: Apply changes by restarting Dock
+  command: "killall Dock"
+  become: yes
+  changed_when: true

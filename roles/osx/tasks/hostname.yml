@@ -8,7 +8,7 @@
 - name: Update ComputerName
   command: scutil --set ComputerName {{ computername }}
   become: true
-  when:
+  changed_when:
     - computername != None
     - computername not in computername_result.stdout
 
@@ -23,7 +23,7 @@
 - name: Update HostName
   command: scutil --set HostName {{ hostname }}
   become: true
-  when:
+  changed_when:
     - hostname != None
     - hostname_result.failed or (hostname not in hostname_result.stdout)
 
@@ -37,4 +37,6 @@
 - name: Update LocalHostName
   command: scutil --set LocalHostName {{ hostname }}
   become: true
-  when: hostname != None and (hostname not in localhostname_result.stdout)
+  changed_when:
+    - hostname != None
+    - hostname not in localhostname_result.stdout)

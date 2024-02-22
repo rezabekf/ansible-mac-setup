@@ -1,70 +1,80 @@
-# Select the tasks to run. Set to true|false.
+# Select the main tasks to run. Set to true|false.
 configure_homebrew: true
 configure_mas: true
 configure_osx: true
 configure_dotfiles: true
 
-# Configure macOS system preferences.
-computername: UsersMBA # Didn't figure out how to escape special characters <User\'s\ MBA> works but always reports change.
-hostname: hostname
+# Select the subtasks to run. Set to true|false.
+homebrew_upgrade_all_packages: true
+configure_hostname: true
+configure_dock: true
+configure_desktop: true
+configure_ohmyzsh: true
+configure_ssh: true
+
+# Configure ComputerName, HostName, and LocalHostName.
+computername: MyComputer # Didn't figure out how to escape special characters <User\'s\ MBA> works but always reports change.
+hostname: myhostname
+
+# Configure macOS Dock.
+enable_dock_magnification: true
+dock_magnification_value: 64
+dock_position: bottom
+minimize_windows_into_application_icon: true
+show_suggested_and_recent_applications_in_dock: true
+
+# Configure macOS Desktop.
+click_wallpaper_to_reveal_desktop: false
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# 13: Lock Screen
+hot_corner_top_left: 2
+hot_corner_top_right: 4
+hot_corner_bottom_left: 5
+hot_corner_bottom_right: 11
 
 # Register homebrew taps.
 homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - homebrew/cask-drivers
   - homebrew/cask-versions
-  - aws/tap
 
 # Install homebrew packages.
 homebrew_packages:
   - awscli
   - aws-sam-cli
-  - bash
   - cfn-lint
   - gh
   - git
-  - git-secrets
-  - go
-  - jq
-  - make
-  - nvm
+  - mas
   - pre-commit
-  - python
-  - ssh-copy-id
   - tree
   - vim
-  - virtualenv
-  - virtualenvwrapper
   - wget
-  - yarn
   - zsh
 
 # Install homebrew casks.
 homebrew_apps:
-  - discord
   - docker
   - dropbox
-  - firefox
-  - google-chrome
   - iterm2
-  - jetbrains-toolbox
-  - microsoft-remote-desktop
-  - powershell
-  - slack
-  - visual-studio-code
-
-# Upgrade homebrew and all packages.
-homebrew_upgrade_all_packages: false
 
 # Install App Store apps.
 mas_installed_apps:
-  - { id: 409201541, name: Pages }
-  - { id: 409183694, name: Keynote }
-  - { id: 409203825, name: Numbers }
+  - { id: 1457450145, name: Octotree }
+  - { id: 443987910, name: 1Password v6.8.9 }
+  - { id: 866773894, name: Quiver }
+  - { id: 937984704, name: Amphetamine }
+  - { id: 1082624744, name: Gifox v1.6.1 }
 
 # Upgrade App Store apps.
-mas_upgrade_all_apps: true
+mas_upgrade_all_apps: false
 
 # Uninstall App Store apps.
 # This is currently bugged, see https://github.com/mas-cli/mas/issues/216. To uninstall app requires
@@ -88,3 +98,16 @@ macos_ohmyzsh:
     disable_untracked_files_dirty: false
     custom: $ZSH/custom
     plugins: git
+    profile_path: ~/.zprofile
+
+ssh_hosts:
+  - name: '*'
+    options:
+      AddKeysToAgent: yes
+      UseKeychain: yes
+      IdentityFile: ~/.ssh/id_ecdsa
+  - name: my-server-name
+    options:
+      HostName: 192.168.1.1
+      User: myuser
+      IdentityFile: ~/.ssh/id_ecdsa

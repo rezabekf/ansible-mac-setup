@@ -1,5 +1,5 @@
-- hosts: localhost
-
+- name: MacOS Configuration
+  hosts: localhost
   vars_files:
     - default.config.yml
 
