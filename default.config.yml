@@ -67,11 +67,8 @@ homebrew_apps:
 
 # Install App Store apps.
 mas_installed_apps:
-  - { id: 1457450145, name: Octotree }
   - { id: 443987910, name: 1Password v6.8.9 }
-  - { id: 866773894, name: Quiver }
   - { id: 937984704, name: Amphetamine }
-  - { id: 1082624744, name: Gifox v1.6.1 }
 
 # Upgrade App Store apps.
 mas_upgrade_all_apps: false
