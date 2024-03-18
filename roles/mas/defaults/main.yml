@@ -1,5 +1,5 @@
 mas_installed_apps: []
 
-mas_upgrade_all_apps: false
+mas_upgrade_all_apps: ""
 
 mas_uninstalled_apps: []

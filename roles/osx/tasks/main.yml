@@ -13,3 +13,8 @@
   import_tasks: desktop.yml
   tags: [osx-desktop]
   when: configure_desktop
+
+- name: Setup Trackpad
+  import_tasks: trackpad.yml
+  tags: [osx-trackpad]
+  when: configure_trackpad

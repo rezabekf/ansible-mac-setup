@@ -13,6 +13,7 @@
     key: "wvous-tl-corner"
     type: int
     value: "{{ hot_corner_top_left }}"
+  notify: Restart Dock
 
 - name: Set hot corner for top right to Application Windows
   osx_defaults:
@@ -20,6 +21,7 @@
     key: "wvous-tr-corner"
     type: int
     value: "{{ hot_corner_top_right }}"
+  notify: Restart Dock
 
 - name: Set hot corner for bottom left to Desktop
   osx_defaults:
@@ -27,6 +29,7 @@
     key: "wvous-bl-corner"
     type: int
     value: "{{ hot_corner_bottom_left }}"
+  notify: Restart Dock
 
 - name: Set hot corner for bottom right to Start Screen Saver
   osx_defaults:
@@ -34,8 +37,4 @@
     key: "wvous-br-corner"
     type: int
     value: "{{ hot_corner_bottom_right }}"
-
-- name: Apply changes by restarting Dock
-  command: "killall Dock"
-  become: yes
-  changed_when: true
+  notify: Restart Dock

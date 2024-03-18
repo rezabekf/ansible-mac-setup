@@ -5,10 +5,12 @@
     key: magnification
     type: bool
     value: "{{ enable_dock_magnification }}"
+  notify: Restart Dock
 
 - name: Set Dock magnification value
   command: "defaults write com.apple.dock largesize -int {{ dock_magnification_value }}"
   when: enable_dock_magnification
+  notify: Restart Dock
 
 - name: Set Dock position
   osx_defaults:
@@ -16,6 +18,7 @@
     key: orientation
     type: string
     value: "{{ dock_position }}"
+  notify: Restart Dock
 
 - name: Minimize windows into application icon
   osx_defaults:
@@ -23,6 +26,7 @@
     key: minimize-to-application
     type: bool
     value: "{{ minimize_windows_into_application_icon }}"
+  notify: Restart Dock
 
 - name: Show suggested and recent applications in Dock
   osx_defaults:
@@ -30,8 +34,4 @@
     key: show-recents
     type: bool
     value: "{{ show_suggested_and_recent_applications_in_dock }}"
-
-- name: Apply changes by restarting Dock
-  command: "killall Dock"
-  become: yes
-  changed_when: true
+  notify: Restart Dock

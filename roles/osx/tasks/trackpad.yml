@@ -1,0 +1,7 @@
+---
+- name: Enable natural scrolling on macOS
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.swipescrolldirection
+    type: bool
+    value: "{{ natural_scrolling }}"
